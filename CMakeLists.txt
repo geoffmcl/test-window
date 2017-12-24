@@ -88,5 +88,54 @@ endif ()
 # deal with install, if any...
 #install( TARGETS ${name} DESTINATION bin )
 
+# BLANK EXECUTABLE from [C:\GTools\tools\BLANK],
+# have 14 C/C++ sources, 1 rc, 16 headers
+set(name testap4)
+set(dir src4)
+set(${name}_SRCS
+    ${dir}/ap4_about.cxx
+    ${dir}/ap4_command.cxx
+    ${dir}/ap4_ini.cxx
+    ${dir}/ap4_list.cxx
+    ${dir}/ap4_maths.cxx
+    ${dir}/ap4_paint.cxx
+    ${dir}/ap4_range.cxx
+    ${dir}/ap4_sprtf.cxx
+    ${dir}/ap4_test.cxx
+    ${dir}/ap4_timer.cxx
+    ${dir}/ap4_track.cxx
+    ${dir}/ap4_tri.cxx
+    ${dir}/ap4_utils.cxx
+    ${dir}/testap4.cxx
+    ${dir}/testap4.rc
+    )
+set(${name}_HDRS
+    ${dir}/Resource.h
+    ${dir}/ap4_about.hxx
+    ${dir}/ap4_command.hxx
+    ${dir}/ap4_ini.hxx
+    ${dir}/ap4_list.hxx
+    ${dir}/ap4_maths.hxx
+    ${dir}/ap4_paint.hxx
+    ${dir}/ap4_range.hxx
+    ${dir}/ap4_sprtf.hxx
+    ${dir}/ap4_test.hxx
+    ${dir}/ap4_timer.hxx
+    ${dir}/ap4_track.hxx
+    ${dir}/ap4_tri.hxx
+    ${dir}/ap4_utils.hxx
+    ${dir}/ap4_vers.hxx
+    ${dir}/testap4.hxx
+    )
+add_executable( ${name} WIN32 ${${name}_SRCS} ${${name}_HDRS} )
+if (add_LIBS)
+    target_link_libraries( ${name} ${add_LIBS} )
+endif ()
+if (MSVC)
+    set_target_properties( ${name} PROPERTIES DEBUG_POSTFIX d )
+endif ()
+# deal with install, if any...
+#install( TARGETS ${name} DESTINATION bin )
+
 
 # eof
